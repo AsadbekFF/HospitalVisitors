@@ -1,0 +1,62 @@
+﻿@model HospitalVisitors.Models.Visitors;
+@using HospitalVisitors.Controllers;
+@{
+    ViewData["Title"] = "Home Page";
+    
+}
+
+<div class="text-center">
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <h5>Enter your name</h5>
+        @Html.TextBoxFor(x => x.Name)
+        <h5>Enter Logs</h5>
+        @Html.TextBoxFor(x => x.Logs)
+        <h5>Enter Type</h5>
+        @Html.TextBoxFor(x => x.Type)
+        <h5>Training</h5>
+        @Html.LabelFor(x => x.Name)
+        <input type="submit" name="Enter" value="Enter" />
+        
+    }
+    @foreach (var item in ViewBag.Visitors)
+    {
+        <table border="1">
+            <tr>
+                <td style="width: 50px;">@item.ID</td>
+                @if (string.IsNullOrEmpty(item.Name))
+                {
+                    <td style="width: 100px;">No Value</td>
+                }
+                else
+                {
+                    <td style="width: 100px;">@item.Name</td>
+                }
+                @if (string.IsNullOrEmpty(item.Date))
+                {
+                    <td style="width: 100px;">No Value</td>
+                }
+                else
+                {
+                    <td style="width: 100px;">@item.Date</td>
+                }
+                @if (string.IsNullOrEmpty(item.Logs))
+                {
+                    <td style="width: 100px;">No Value</td>
+                }
+                else
+                {
+                    <td style="width: 100px;">@item.Logs</td>
+                }
+                @if (string.IsNullOrEmpty(item.Type))
+                {
+                    <td style="width: 100px;">No Value</td>
+                }
+                else
+                {
+                    <td style="width: 100px;">@item.Type</td>
+                }
+            </tr>
+        </table>
+    }
+</div>
